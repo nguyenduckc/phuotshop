@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PhuotShop.Data.Repositories
 {
-    public interface ITagRepository
+    public interface ITagRepository : IRepository<Tag>
     {
 
     }

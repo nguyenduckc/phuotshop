@@ -3,7 +3,7 @@ using PhuotShop.Model.Models;
 
 namespace PhuotShop.Data.Repositories
 {
-    public interface IOrderDetailRepository
+    public interface IOrderDetailRepository : IRepository<OrderDetail>
     {
     }
 

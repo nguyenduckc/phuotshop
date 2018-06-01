@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PhuotShop.Data.Repositories
 {
-    public interface IMenuRepository
+    public interface IMenuRepository : IRepository<Menu>
     {
     }
     public class MenuRepository : RepositoryBase<Menu>, IMenuRepository

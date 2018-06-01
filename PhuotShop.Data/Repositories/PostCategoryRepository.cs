@@ -3,7 +3,7 @@ using PhuotShop.Model.Models;
 
 namespace PhuotShop.Data.Repositories
 {
-    public interface IPostCategoryRepository
+    public interface IPostCategoryRepository : IRepository<PostCategory>
     {
     }
 

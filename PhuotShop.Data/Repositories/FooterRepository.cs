@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PhuotShop.Data.Repositories
 {
-    public interface IFooterRepository
+    public interface IFooterRepository : IRepository<Footer>
     {
     }
     public class FooterRepository : RepositoryBase<Footer>, IFooterRepository

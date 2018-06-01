@@ -9,6 +9,7 @@ namespace PhuotShop.Data.Infrastructure
         void Add(T entity);
         void Update(T entity);
         void Delete(T entity);
+        void Delete(int id);
         void DeleteMulti(Expression<Func<T, bool>> where);
         T GetSingleById(int id);
         T GetSingleByCondition(Expression<Func<T, bool>> expression, string [] includes = null);
