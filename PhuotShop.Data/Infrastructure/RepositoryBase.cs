@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace PhuotShop.Data.Infrastructure
 {
-    public abstract class RepositoryBase<T> where T : class
+    public abstract class RepositoryBase<T> : IRepository<T> where T : class
     {
         #region Properties
 
@@ -34,9 +34,9 @@ namespace PhuotShop.Data.Infrastructure
 
         #region Implementation
 
-        public virtual T Add(T entity)
+        public virtual void Add(T entity)
         {
-            return dbSet.Add(entity);
+            dbSet.Add(entity);
         }
 
         public virtual void Update(T entity)
@@ -45,9 +45,9 @@ namespace PhuotShop.Data.Infrastructure
             dataContext.Entry(entity).State = EntityState.Modified;
         }
 
-        public virtual T Delete(T entity)
+        public virtual void Delete(T entity)
         {
-            return dbSet.Remove(entity);
+            dbSet.Remove(entity);
         }
 
         public virtual T Delete(int id)
@@ -78,7 +78,7 @@ namespace PhuotShop.Data.Infrastructure
             return dbSet.Count(where);
         }
 
-        public IEnumerable<T> GetAll(string[] includes = null)
+        public IQueryable<T> GetAll(string[] includes = null)
         {
             //HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
             if (includes != null && includes.Count() > 0)
@@ -104,7 +104,7 @@ namespace PhuotShop.Data.Infrastructure
             return dataContext.Set<T>().FirstOrDefault(expression);
         }
 
-        public virtual IEnumerable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null)
+        public virtual IQueryable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null)
         {
             //HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
             if (includes != null && includes.Count() > 0)
@@ -118,7 +118,7 @@ namespace PhuotShop.Data.Infrastructure
             return dataContext.Set<T>().Where<T>(predicate).AsQueryable<T>();
         }
 
-        public virtual IEnumerable<T> GetMultiPaging(Expression<Func<T, bool>> predicate, out int total, int index = 0, int size = 20, string[] includes = null)
+        public virtual IQueryable<T> GetMultiPaging(Expression<Func<T, bool>> predicate, out int total, int index = 0, int size = 20, string[] includes = null)
         {
             int skipCount = index * size;
             IQueryable<T> _resetSet;
