@@ -1,9 +1,10 @@
 ﻿using System.Data.Entity;
 using PhuotShop.Model.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace PhuotShop.Data
 {
-    public class PhuotShopDbContext : DbContext
+    public class PhuotShopDbContext : IdentityDbContext<ApplicationUser>
     {
         public PhuotShopDbContext() : base("PhuotShopConnection")
         {
@@ -28,9 +29,17 @@ namespace PhuotShop.Data
         public DbSet<VisitorStatistic> VisitorStatistics { set; get; }
         public DbSet<Error> Errors { set; get; }
 
+        public static PhuotShopDbContext Create()
+        {
+            return new PhuotShopDbContext();
+        }
+
         protected override void OnModelCreating(DbModelBuilder builder)
         {
-
+            builder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId }).ToTable("ApplicationUserRoles");
+            builder.Entity<IdentityUserLogin>().HasKey(i => i.UserId).ToTable("ApplicationUserLogins");
+            //builder.Entity<IdentityRole>().ToTable("ApplicationRoles");
+            //builder.Entity<IdentityUserClaim>().HasKey(i => i.UserId).ToTable("ApplicationUserClaims");
         }
     }
 }
