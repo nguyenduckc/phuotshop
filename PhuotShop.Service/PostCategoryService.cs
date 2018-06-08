@@ -1,28 +1,32 @@
 ﻿using PhuotShop.Data.Infrastructure;
 using PhuotShop.Data.Repositories;
 using PhuotShop.Model.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PhuotShop.Service
 {
     public interface IPostCategoryService
     {
         PostCategory Add(PostCategory postCategory);
+
         void Update(PostCategory postCategory);
+
         PostCategory Delete(int id);
+
         IEnumerable<PostCategory> GetAll();
+
         IEnumerable<PostCategory> GetAllParentId(int parentId);
+
         PostCategory GetById(int id);
+
         void Save();
     }
+
     public class PostCategoryService : IPostCategoryService
     {
-        IPostCategoryRepository _postCategoryRepository;
-        IUnitOfWork _unitOfWork;
+        private IPostCategoryRepository _postCategoryRepository;
+        private IUnitOfWork _unitOfWork;
+
         public PostCategoryService(IPostCategoryRepository postCategoryRepository, IUnitOfWork unitOfWork)
         {
             this._postCategoryRepository = postCategoryRepository;
@@ -46,7 +50,7 @@ namespace PhuotShop.Service
 
         public IEnumerable<PostCategory> GetAllParentId(int parentId)
         {
-           return _postCategoryRepository.GetMulti(x => x.Status && x.ParentID == parentId);
+            return _postCategoryRepository.GetMulti(x => x.Status && x.ParentID == parentId);
         }
 
         public PostCategory GetById(int id)
@@ -62,6 +66,6 @@ namespace PhuotShop.Service
         public void Update(PostCategory postCategory)
         {
             _postCategoryRepository.Update(postCategory);
-        } 
+        }
     }
 }

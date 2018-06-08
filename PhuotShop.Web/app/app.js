@@ -1,6 +1,6 @@
 ﻿/// <reference path="/Assets/admin/libs/angular/angular.js" />
 (function () {
-    angular.module('phuotshop', ['phuotshop.products', 'phuotshop.common']).config(config);
+    angular.module('phuotshop', ['phuotshop.products', 'phuotshop.product_categories', 'phuotshop.common']).config(config);
 
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
     function config($stateProvider, $urlRouterProvider) {
