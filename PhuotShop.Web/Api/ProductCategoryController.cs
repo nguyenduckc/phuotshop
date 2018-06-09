@@ -23,7 +23,7 @@ namespace PhuotShop.Web.Api
         }
 
         [Route("getall")]
-        public HttpResponseMessage GetAll(HttpRequestMessage request, int page, int pageSize = 20)
+        public HttpResponseMessage GetAll(HttpRequestMessage request, int page, int pageSize = 5)
         {
             return CreateHttpResponse(request, () =>
             {

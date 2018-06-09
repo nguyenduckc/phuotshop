@@ -15,7 +15,7 @@
             var config = {
                 params: {
                     page: page,
-                    pageSize :10
+                    pageSize :5
                 }
             }
             apiService.get('/api/productcategory/getall', config, function (result) {
@@ -24,7 +24,7 @@
                 $scope.pagesCount = result.data.TotalPages;
                 $scope.totalCount = result.data.TotalCount;
             }, function () {
-                console.log('Load product category failed.');
+                console.log('Load product category failed!');
             });
         }
 
