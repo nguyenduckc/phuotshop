@@ -30,9 +30,22 @@
                 </button>
             </div>
         </div>
+
         <div class="card-body">
             <div class="row">
                 <div class="col-md-12">
+                    <!-- SEARCH FORM -->
+                    <form class="form-inline">
+                        <div class="input-group">
+                            <input class="form-control" ng-model="keyword" type="search" placeholder="Tìm kiếm" aria-label="Search">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button" ng-click="search()">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <br />
                     <table class="table table-bordered">
                         <tr>
                             <th style="width: 10%">Thứ tự</th>
@@ -51,6 +64,11 @@
                                 <button class="btn btn-sm btn-danger"><i class="fa fa-eraser"></i></button>
                             </td>
                         </tr>
+                        <tfoot>
+                            <tr>
+                                <td colspan="5">Tổng số bản ghi: {{totalCount}}</td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>

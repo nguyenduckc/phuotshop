@@ -23,12 +23,12 @@ namespace PhuotShop.Web.Api
         }
 
         [Route("getall")]
-        public HttpResponseMessage GetAll(HttpRequestMessage request, int page, int pageSize = 5)
+        public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int page, int pageSize = 5)
         {
             return CreateHttpResponse(request, () =>
             {
                 int totalRow = 0;
-                var model = _producCategoryService.GetAll();
+                var model = _producCategoryService.GetAll(keyword);
 
                 totalRow = model.Count();
                 var query = model.OrderByDescending(x => x.CreatedDate).Skip(page * pageSize).Take(pageSize);
