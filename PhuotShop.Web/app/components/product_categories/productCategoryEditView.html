@@ -1,0 +1,115 @@
+﻿<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Cập nhật danh mục: {{productCategory.Name}}</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="#">Sản phẩm</a></li>
+                    <li class="breadcrumb-item"><a ui-sref="product_categories">Danh mục</a></li>
+                    <li class="breadcrumb-item active">Cập nhật</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <!-- Default box -->
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">{{productCategory.Name}}</h3>
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <!--Create category form-->
+        <div class="card card-info">
+            <!-- form start -->
+            <form class="form-horizontal" novalidate name="frmUpdateProductCategory" role="form" ng-submit="updateProductCategory()">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Tên danh mục</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" ng-change="GetSeoTitle()" name="name" ng-model="productCategory.Name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">Tiêu đề SEO</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="alias" ng-model="productCategory.Alias">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">Mô tả ngắn</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="description" ng-model="productCategory.Description">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">Danh mục cha</label>
+                        <div class="col-sm-10">
+                            <select name="parentId" class="form-control" ng-model="productCategory.ParentID" ng-options="option.ID as option.Name for option in parentCategories">
+                                <option value="">-- Chọn danh mục --</option>
+                            </select>
+                            <input name="parentId" type="hidden" ng-model="productCategory.ParentID" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">Thứ tự hiển thị</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" name="displayOrder" ng-model="productCategory.DisplayOrder">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">Hình ảnh</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="image" ng-model="productCategory.Image">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">Meta keyword</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="metaKeyword" ng-model="productCategory.MetaKeyword">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">Meta discription</label>
+                        <div class="col-sm-10">
+                            <textarea type="text" class="form-control" name="metaDiscription" ng-model="productCategory.MetaDiscription"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" name="status" ng-model="productCategory.Status" ng-checked="productCategory.Status">
+                                <label class="form-check-label" for="exampleCheck2">Kích hoạt</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" name="homeFlag" ng-model="productCategory.HomeFlag" ng-checked="productCategory.HomeFlag">
+                                <label class="form-check-label" for="exampleCheck2">Hiển thị trang chủ</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-success">Cập nhật</button>
+                    <button ui-sref="product_categories" class="btn btn-default float-right">Hủy</button>
+                </div>
+                <!-- /.card-footer -->
+            </form>
+        </div>
+        <!--Create category form-->
+    </div>
+    <!-- /.card -->
+</section>
+<!-- /.content -->

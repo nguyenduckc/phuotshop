@@ -18,18 +18,18 @@
             page = page || 0;
             var config = {
                 params: {
-                    keyword : $scope.keyword,
+                    keyword: $scope.keyword,
                     page: page,
-                    pageSize :5
+                    pageSize: 5
                 }
             }
             apiService.get('/api/productcategory/getall', config, function (result) {
                 if (result.data.TotalCount == 0) {
                     notificationService.displayWarning('Không có bản ghi nào được tìm thấy!');
                 }
-                else {
-                    notificationService.displaySuccess('Có ' + result.data.TotalCount + ' bản ghi được tìm thấy!');
-                }
+                //else {
+                //    notificationService.displaySuccess('Có ' + result.data.TotalCount + ' bản ghi được tìm thấy!');
+                //}
                 $scope.productCategories = result.data.Items;
                 $scope.page = result.data.Page;
                 $scope.pagesCount = result.data.TotalPages;

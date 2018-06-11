@@ -33,7 +33,7 @@
 
         <div class="card-body">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <!-- SEARCH FORM -->
                     <form class="form-inline">
                         <div class="input-group">
@@ -45,7 +45,14 @@
                             </div>
                         </div>
                     </form>
-                    <br />
+                    <!-- SEARCH FORM -->
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-success float-right" type="submit" ui-sref="add_product_category">Thêm mới</button>
+                </div>
+                <br />
+                <br />
+                <div class="col-md-12">                    
                     <table class="table table-bordered">
                         <tr>
                             <th style="width: 10%">Thứ tự</th>
@@ -60,7 +67,7 @@
                             <td>{{item.CreatedDate | date:'dd/MM/yy hh:mm:ss'}}</td>
                             <td><span ng-class="{'btn btn-sm btn-danger': item.Status == false, 'btn btn-sm btn-primary':item.Status ==true }">{{item.Status | statusFilter}}</span></td>
                             <td>
-                                <button class="btn btn-sm btn-secondary"><i class="fa fa-pencil-square-o"></i></button>
+                                <button class="btn btn-sm btn-secondary" ui-sref="edit_product_category({id:item.ID})"><i class="fa fa-pencil-square-o"></i></button>
                                 <button class="btn btn-sm btn-danger"><i class="fa fa-eraser"></i></button>
                             </td>
                         </tr>

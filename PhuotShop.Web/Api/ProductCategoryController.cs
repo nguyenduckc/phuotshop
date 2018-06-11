@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using PhuotShop.Web.Infrastructure.Extensions;
 
 namespace PhuotShop.Web.Api
 {
@@ -23,6 +24,7 @@ namespace PhuotShop.Web.Api
         }
 
         [Route("getall")]
+        [HttpGet]
         public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int page, int pageSize = 5)
         {
             return CreateHttpResponse(request, () =>
@@ -43,6 +45,93 @@ namespace PhuotShop.Web.Api
                 };
 
                 var response = request.CreateResponse(HttpStatusCode.OK, paginationSet);
+                return response;
+            });
+        }
+
+        [Route("getbyid/{id:int}")]
+        [HttpGet]
+        public HttpResponseMessage GetById(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var model = _producCategoryService.GetById(id);
+
+                var responData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(model);              
+
+                var response = request.CreateResponse(HttpStatusCode.OK, responData);
+                return response;
+            });
+        }
+
+        [Route("getallparents")]
+        [HttpGet]
+        public HttpResponseMessage GetAll(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var model = _producCategoryService.GetAll();
+                var responData = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);
+                var response = request.CreateResponse(HttpStatusCode.OK, responData);
+
+                return response;
+            });
+        }
+
+        [Route("create")]
+        [HttpPost]
+        [AllowAnonymous]
+        public HttpResponseMessage Create(HttpRequestMessage request, ProductCategoryViewModel productCategoryVm)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var newProductCategory = new ProductCategory();
+                    newProductCategory.UpdateProductCategory(productCategoryVm);
+                    newProductCategory.CreatedDate = DateTime.Now;
+
+                    _producCategoryService.Add(newProductCategory);
+                    _producCategoryService.Save();
+
+                    var responData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(newProductCategory);
+                    response = request.CreateResponse(HttpStatusCode.Created, responData);
+                }
+                return response;
+            });
+        }
+
+        [Route("update")]
+        [HttpPut]
+        [AllowAnonymous]
+        public HttpResponseMessage Update(HttpRequestMessage request, ProductCategoryViewModel productCategoryVm)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var dbProductCategory = _producCategoryService.GetById(productCategoryVm.ID);
+                    dbProductCategory.UpdateProductCategory(productCategoryVm);
+                    dbProductCategory.UpdatedDate = DateTime.Now;
+
+                    _producCategoryService.Update(dbProductCategory);
+                    _producCategoryService.Save();
+
+                    var responData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(dbProductCategory);
+                    response = request.CreateResponse(HttpStatusCode.Created, responData);
+                }
                 return response;
             });
         }
