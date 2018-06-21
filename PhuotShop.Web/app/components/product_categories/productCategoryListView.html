@@ -68,7 +68,7 @@
                             <td><span ng-class="{'btn btn-sm btn-danger': item.Status == false, 'btn btn-sm btn-primary':item.Status ==true }">{{item.Status | statusFilter}}</span></td>
                             <td>
                                 <button class="btn btn-sm btn-secondary" ui-sref="edit_product_category({id:item.ID})"><i class="fa fa-pencil-square-o"></i></button>
-                                <button class="btn btn-sm btn-danger"><i class="fa fa-eraser"></i></button>
+                                <button class="btn btn-sm btn-danger" ng-click="deleteProductCategory(item.ID)"><i class="fa fa-eraser"></i></button>
                             </td>
                         </tr>
                         <tfoot>
