@@ -33,7 +33,7 @@
 
         <div class="card-body">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-10">
                     <!-- SEARCH FORM -->
                     <form class="form-inline">
                         <div class="input-group">
@@ -47,19 +47,21 @@
                     </form>
                     <!-- SEARCH FORM -->
                 </div>
-                <div class="col-md-6">
-                    <button class="btn btn-success float-right" type="submit" ui-sref="add_product_category">Thêm mới</button>
+                <div class="col-md-2">
+                    <button class="btn btn-success" type="submit" ui-sref="add_product_category">Thêm mới</button>
+                    <button class="btn btn-danger" type="submit" id="btnDelete" disabled ng-click="deleteMultipleProductCategories()">Xóa</button>
                 </div>
                 <br />
                 <br />
                 <div class="col-md-12">                    
                     <table class="table table-bordered">
-                        <tr>
+                        <tr class="text-center">
                             <th style="width: 10%">Thứ tự</th>
-                            <th style="width: 50%">Tên danh mục</th>
+                            <th style="width: 42%">Tên danh mục</th>
                             <th style="width: 20%">Ngày tạo</th>
                             <th style="width: 10%">Trạng thái</th>
                             <th style="width: 10%">Thao tác</th>
+                            <td style="width: 8%"><label>Tất cả <input type="checkbox" name="all" ng-click="selectAllProductCategories()" /></label></td>
                         </tr>
                         <tr ng-repeat="item in productCategories">
                             <td>{{item.ID}}</td>
@@ -70,10 +72,11 @@
                                 <button class="btn btn-sm btn-secondary" ui-sref="edit_product_category({id:item.ID})"><i class="fa fa-pencil-square-o"></i></button>
                                 <button class="btn btn-sm btn-danger" ng-click="deleteProductCategory(item.ID)"><i class="fa fa-eraser"></i></button>
                             </td>
+                            <td><input type="checkbox" ng-model="item.checked" name="all" /></td>
                         </tr>
                         <tfoot>
                             <tr>
-                                <td colspan="5">Trang {{page + 1}} - Tổng số bản ghi: {{totalCount}}</td>
+                                <td colspan="6">Trang {{page + 1}} - Tổng số bản ghi: {{totalCount}}</td>
                             </tr>
                         </tfoot>
                     </table>
