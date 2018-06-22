@@ -73,9 +73,9 @@ namespace PhuotShop.Service
             _unitOfWork.Commit();
         }
 
-        public void Update(ProductCategory ProductCategory)
+        public void Update(ProductCategory productCategory)
         {
-            _productCategoryRepository.Update(ProductCategory);
+            _productCategoryRepository.Update(productCategory);
         }
     }
 }
