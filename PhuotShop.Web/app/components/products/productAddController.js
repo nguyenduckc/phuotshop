@@ -17,6 +17,14 @@
             height: '500px'
         }
 
+        $scope.chooseImage = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.product.Image = fileUrl;
+            }
+
+            finder.popup();
+        }
         function GetSeoTitle() {
             $scope.product.Alias = commonService.getSeoTitle($scope.product.Name);
         }
