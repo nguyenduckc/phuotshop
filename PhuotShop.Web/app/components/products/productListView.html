@@ -69,7 +69,7 @@
                             <td>{{item.CreatedDate | date:'dd/MM/yy hh:mm:ss'}}</td>
                             <td><span ng-class="{'btn btn-sm btn-danger': item.Status == false, 'btn btn-sm btn-primary':item.Status ==true }">{{item.Status | statusFilter}}</span></td>
                             <td>
-                                <button class="btn btn-sm btn-secondary" ui-sref="edit_product({id:item.ID})"><i class="fa fa-pencil-square-o"></i></button>
+                                <button class="btn btn-sm btn-secondary" ui-sref="product_edit({id:item.ID})"><i class="fa fa-pencil-square-o"></i></button>
                                 <button class="btn btn-sm btn-danger" ng-click="deleteProduct(item.ID)"><i class="fa fa-eraser"></i></button>
                             </td>
                             <td><input type="checkbox" ng-model="item.checked" name="all" /></td>

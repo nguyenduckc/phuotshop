@@ -3887,7 +3887,7 @@
     <Folder Include="app\shared\footer\" />
     <Folder Include="app\shared\navigation\" />
     <Folder Include="Assets\client\" />
-    <Folder Include="UploadedFiles\" />
+    <Folder Include="UploadedFiles\images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

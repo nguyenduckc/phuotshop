@@ -22,7 +22,6 @@
             finder.selectActionFunction = function (fileUrl) {
                 $scope.product.Image = fileUrl;
             }
-
             finder.popup();
         }
         function GetSeoTitle() {
