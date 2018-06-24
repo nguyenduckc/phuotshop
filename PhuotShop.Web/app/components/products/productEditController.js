@@ -13,14 +13,8 @@
             languague: 'vi',
             height: '500px'
         }
-
-        $scope.chooseImage = function () {
-            var finder = new CKFinder();
-            finder.selectActionFunction = function (fileUrl) {
-                $scope.product.Image = fileUrl;
-            }
-            finder.popup();
-        }
+        
+        $scope.moreImages = [];        
 
         function GetSeoTitle() {
             $scope.product.Alias = commonService.getSeoTitle($scope.product.Name);
@@ -29,12 +23,14 @@
         function loadProductDetail() {
             apiService.get('/api/product/getbyid/' + $stateParams.id, null, function (result) {
                 $scope.product = result.data;
+                $scope.moreImages = JSON.parse($scope.product.MoreImages);
             }, function (error) {
                 notificationService.displayError(error.data);
             });
         }
 
         function updateProduct() {
+            $scope.product.MoreImages = JSON.stringify($scope.moreImages);
             apiService.put('/api/product/update', $scope.product, function (result) {
                 notificationService.displaySuccess(result.data.Name + ' đã được cập nhật.');
                 $state.go('products');
@@ -49,6 +45,26 @@
             }, function () {
                 console.log('Cannot get list parent category.')
             });
+        }
+
+        $scope.chooseImage = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.product.Image = fileUrl;
+                })
+            }
+            finder.popup();
+        }
+        
+        $scope.chooseMoreImage = function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.moreImages.push(fileUrl);
+                })
+            }
+            finder.popup();
         }
 
         loadProductCategory();
