@@ -13,6 +13,7 @@ using PhuotShop.Web.Infrastructure.Extensions;
 namespace PhuotShop.Web.Api
 {
     [RoutePrefix("api/postcategory")]
+    [Authorize]
     public class PostCategoryController : ApiControllerBase
     {
         IPostCategoryService _postCategoryService;
