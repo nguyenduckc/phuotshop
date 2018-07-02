@@ -69,7 +69,7 @@
 
         //public void CreateFooter(PhuotShopDbContext context)
         //{
-        //    if (context.Footers.Count(x => x.ID == CommonConstants.DefaultFooterId)==0)
+        //    if (context.Footers.Count(x => x.ID == CommonConstants.DefaultFooterId) == 0)
         //    {
         //        string content "";
         //    }

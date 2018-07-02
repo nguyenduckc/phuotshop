@@ -13,9 +13,11 @@ namespace PhuotShop.Web.Controllers
     public class HomeController : Controller
     {
         IProductCategoryService _productCategoryService;
-        public HomeController(IProductCategoryService productCategoryService)
+        ICommonService _commonService;
+        public HomeController(IProductCategoryService productCategoryService, ICommonService commonService)
         {
             _productCategoryService = productCategoryService;
+            _commonService = commonService;
         }
         public ActionResult Index()
         {
@@ -38,7 +40,9 @@ namespace PhuotShop.Web.Controllers
         [ChildActionOnly]
         public ActionResult Footer()
         {
-            return PartialView();
+            var footerModel = _commonService.GetFooter();
+            var footerViewModel = Mapper.Map<Footer, FooterViewModel>(footerModel);
+            return PartialView(footerViewModel);
         }
         [ChildActionOnly]
         public ActionResult Header()
