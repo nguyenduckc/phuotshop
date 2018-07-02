@@ -1,4 +1,8 @@
-﻿using System;
+﻿using AutoMapper;
+using PhuotShop.Model.Models;
+using PhuotShop.Service;
+using PhuotShop.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +12,11 @@ namespace PhuotShop.Web.Controllers
 {
     public class HomeController : Controller
     {
+        IProductCategoryService _productCategoryService;
+        public HomeController(IProductCategoryService productCategoryService)
+        {
+            _productCategoryService = productCategoryService;
+        }
         public ActionResult Index()
         {
             return View();
@@ -39,7 +48,9 @@ namespace PhuotShop.Web.Controllers
         [ChildActionOnly]
         public ActionResult Category()
         {
-            return PartialView();
+            var model = _productCategoryService.GetAll();
+            var listProductCategoryViewModel = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);
+            return PartialView(listProductCategoryViewModel);
         }
     }
 }
