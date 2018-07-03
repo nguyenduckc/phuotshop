@@ -10,7 +10,7 @@ namespace PhuotShop.Service
     {
         Footer GetFooter();
 
-        //IEnumerable<Slide> GetSlides();
+        IEnumerable<Slide> GetSlides();
 
         //SystemConfig GetSystemConfig(string code);
     }
@@ -20,14 +20,14 @@ namespace PhuotShop.Service
         private IFooterRepository _footerRepository;
         //private ISystemConfigRepository _systemConfigRepository;
         private IUnitOfWork _unitOfWork;
-        //private ISlideRepository _slideRepository;
+        private ISlideRepository _slideRepository;
 
-        public CommonService(IFooterRepository footerRepository, IUnitOfWork unitOfWork)
+        public CommonService(IFooterRepository footerRepository, IUnitOfWork unitOfWork, ISlideRepository slideRepository)
         {
             _footerRepository = footerRepository;
             _unitOfWork = unitOfWork;
             //_systemConfigRepository = systemConfigRepository;
-            //_slideRepository = slideRepository;
+            _slideRepository = slideRepository;
         }
 
         public Footer GetFooter()
@@ -35,10 +35,10 @@ namespace PhuotShop.Service
             return _footerRepository.GetSingleByCondition(x => x.ID == CommonConstants.DefaultFooterId);
         }
 
-        //public IEnumerable<Slide> GetSlides()
-        //{
-        //    return _slideRepository.GetMulti(x => x.Status);
-        //}
+        public IEnumerable<Slide> GetSlides()
+        {
+            return _slideRepository.GetMulti(x => x.Status);
+        }
 
         //public SystemConfig GetSystemConfig(string code)
         //{

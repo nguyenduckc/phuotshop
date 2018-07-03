@@ -80,6 +80,10 @@
     <Compile Include="Migrations\201806040242439_ChangeKey.Designer.cs">
       <DependentUpon>201806040242439_ChangeKey.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807020505360_AddContentToSlide.cs" />
+    <Compile Include="Migrations\201807020505360_AddContentToSlide.Designer.cs">
+      <DependentUpon>201807020505360_AddContentToSlide.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PhuotShopDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -128,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806040242439_ChangeKey.resx">
       <DependentUpon>201806040242439_ChangeKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807020505360_AddContentToSlide.resx">
+      <DependentUpon>201807020505360_AddContentToSlide.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
